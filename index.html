@@ -24,10 +24,11 @@
 		<div class="reveal">
 			<div class="slides">
         <section>
-          <h3>Extending Monitoring Capabilities With Golang</h3>
+          <h2>Golang, Yieldbot, Sensu and Now You</h2>
+          <h4>Extending Monitoring Capabilities With Golang</h4>
           <p>&nbsp;</p>
           <P>Yieldbot</p>
-          <p>March 10 2016</p>
+          <p>June 8 2016</p>
         </section>
 
         <section id="fragments">
@@ -57,7 +58,7 @@
         </section>
 
         <section id="fragments">
-          <h2>Goals</h2>   
+          <h2>Goals</h2>
           <p style="position: absolute; left: 0px;" class="fragment">increased performance</p><br />
           <p style="position: absolute; left: 0px;" class="fragment">dependency isolation</p><br />
           <p style="position: absolute; left: 0px;" class="fragment">lightweight codebase</p><br />
@@ -97,21 +98,12 @@ func main() {
       </section>
       <section>
         <p><a href="https://github.com/spf13/cobra">Cobra</a></p>
-        <pre><code>
-var checkFileHandlesCmd = &cobra.Command{
-  Use:   "checkFileHandles",
-  Short: "A brief description of your command",
-  Long: "A longer description",
-  Run: func(cmd *cobra.Command, args []string) {
-
-    var appPid string
-
-    if app == "" {
-      fmt.Printf("Please enter a process name to check. \n")
-    }
-  },
-}
-        </code></pre>
+        <ul>
+          <li>Global and nest flags</li>
+          <li>Easy app generation (indluding help)</li>
+          <li>12-factor compatible</li>
+          <li>Posix flags</li>
+        </ul>
       </section>
       <section>
         <p><a href="https://github.com/spf13/viper">Viper</a></p>
@@ -123,6 +115,27 @@ var checkFileHandlesCmd = &cobra.Command{
       </section>
       <section>
       <p><a href="https://github.com/tools/godep">Godep</a></p>
+      <ul>
+        <li> Pull in external packages to reduce outside dependencies</li>
+        <li> Cut down on network i/o by keeping code self-contained</li>
+      </ul>
+      </section>
+      <section>
+      <p><a href="https://github.com/Sirupsen/logrus">Logrus</a></p>
+      <ul>
+        <li>Fully structured logging</li>
+        <li>Api compatible with std go logging</li>
+        <li>Ascii or json out</li>
+        <li>Multiple logging instances</li>
+      </ul>
+      </section>
+      <section>
+      <p><a href="https://github.com/smartystreets/goconvey">Goconvey</a></p>
+      <ul>
+        <li>Integrated with go test</li>
+        <li>Pretty web ui (if care about such things)</li>
+        <li>Coverage reports</li>
+      </ul>
       </section>
     </section>
 
@@ -134,7 +147,9 @@ var checkFileHandlesCmd = &cobra.Command{
         <p style="float: left;" class="fragment">Cobra provides a simple scaffolding command</p>
         <p style="float: left;" class="fragment">Viper provides a simple way to deal with configuration</p>
         <p style="float: left;" class="fragment">Godep provides a simple and clean vendoring solution</p>
-        <p style="float: left;" class="fragment">Vagrant/Docker provide a simple local test environment</p>
+        <p style="float: left;" class="fragment">Goconvey provides a simple testing and coverage framework</p>
+        <p style="float: left;" class="fragment">Logrus provides a simple logging framework</p>
+        <p style="float: left;" class="fragment">Vagrant/Docker provides a simple local test environment</p>
       </section>
       <section id="fragments">
         <h4>Building the code</h4>
@@ -163,44 +178,71 @@ var checkFileHandlesCmd = &cobra.Command{
        <section id="fragments">
          <h4 style="position: absolute; left: 0px;">Features</h4><br />
          <p style="position: absolute; left: 0px;" class="fragment">common exit codes</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">common error handler</p><br />
          <p style="position: absolute; left: 0px;" class="fragment">common exit function</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">functions to facilitate writing Sensu handlers</p><br />
+         <p style="position: absolute; left: 0px;" class="fragment">functions to facilitate writing Sensu handlers and checks</p><br />
        </section>
      </section>
 
      <section>
-       <h2>sensuplugines</h2>
-       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensuplugines">sensuplugines</a></p><br />
+       <h2>sensupluginses</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginses">sensupluginses</a></p><br />
        <p>&nbsp;</p>
        <section id="fragments">
          <h4 style="position: absolute; left: 0px;">Features</h4><br />
          <p style="position: absolute; left: 0px;" class="fragment">send a defined subset of Sensu event data to ES</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">uses sensuplugin functionality</p><br />
        </section>
      </section>
 
      <section>
-       <h2>sensupluginslack</h2>
-       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginslack">sensupluginslack</a></p><br />
+       <h2>sensupluginsslack</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginsslack">sensupluginsslack</a></p><br />
        <p>&nbsp;</p>
        <section id="fragments">
          <h4 style="position: absolute; left: 0px;">Features</h4><br />
          <p style="position: absolute; left: 0px;" class="fragment">send a defined subset of Sensu event data to Slack</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">uses sensuplugin functionality</p><br />
        </section>
      </section>
 
      <section>
-       <h2>sensupluginfile</h2>
-       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginfile">sensupluginfile</a></p><br />
+       <h2>sensupluginsfile</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginsfile">sensupluginsfile</a></p><br />
        <p>&nbsp;</p>
        <section id="fragments">
          <h4 style="position: absolute; left: 0px;">Features</h4><br />
          <p style="position: absolute; left: 0px;" class="fragment">monitor the number of open file handles</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">monitor the size of a given file</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">uses sensuplugin functionality</p><br />
-         <p style="position: absolute; left: 0px;" class="fragment">functions to facilitate working with files</p><br />
+         <p style="position: absolute; left: 0px;" class="fragment">functions to facilitate working with files and processes</p><br />
+       </section>
+     </section>
+
+     <section>
+       <h2>sensupluginsprocess</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginsprocess">sensupluginsprocess</a></p><br />
+       <p>&nbsp;</p>
+       <section id="fragments">
+         <h4 style="position: absolute; left: 0px;">Features</h4><br />
+         <p style="position: absolute; left: 0px;" class="fragment">is a process up or down</p><br />
+       </section>
+     </section>
+
+     <section>
+       <h2>sensupluginschrony</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginschrony">sensupluginschrony</a></p><br />
+       <p>&nbsp;</p>
+       <section id="fragments">
+         <h4 style="position: absolute; left: 0px;">Features</h4><br />
+         <p style="position: absolute; left: 0px;" class="fragment">monitor chrony</p><br />
+         <p style="position: absolute; left: 0px;" class="fragment">generic time, date, and threshold functions</p><br />
+       </section>
+     </section>
+
+     <section>
+       <h2>sensupluginssensu</h2>
+       <p style="position: absolute; left: 0px;">Repo: <a href="https://github.com/yieldbot/sensupluginssensu">sensupluginssensu</a></p><br />
+       <p>&nbsp;</p>
+       <section id="fragments">
+         <h4 style="position: absolute; left: 0px;">Features</h4><br />
+         <p style="position: absolute; left: 0px;" class="fragment">detect if checkes have been silenced w/o expiration</p><br />
+         <p style="position: absolute; left: 0px;" class="fragment">auto-removal of stashes and checks (WIP)</p><br />
        </section>
      </section>
 
@@ -209,6 +251,8 @@ var checkFileHandlesCmd = &cobra.Command{
        <ul>
          <li><a href="https://github.com/yieldbot/sensupluginfile/blob/master/CONTRIBUTING.md">Contributing Guidelines</a></li>
          <li><a href="http://12factor.net/">12 Factor App</a></li>
+         <li><a href="https://docs.google.com/document/d/199PqyG3UsyXlwieHaqbGiWVa8eMWi8zzAn0YfcApr8Q/edit">My Philosophy on Alerting</a></li>
+         <li><a href="http://www.cnsm-conf.org/2013/documents/papers/CNSM/p143-tang.pdf">Identifying Missed Monitoring Alerts based on Unstructured Incident Tickets</li>
        </ul>
      </section>
 
@@ -218,7 +262,7 @@ var checkFileHandlesCmd = &cobra.Command{
          <li>Slack: <a href="https://bosops-invite.herokuapp.com/">BosOps</a></li>
          <li>Twitter: <a href="https://twitter.com/DevopsMatt">@DevopsMatt</a></li>
          <li>Github: <a href="https://github.com/mattyjones">mattyjones</a></li>
-         <li>Meetup: <a href="http://www.meetup.com/Metrowest-Golang-Meetup/">Metrowest Golang Meetup</a></li>
+         <li>Meetup: <a href="http://www.meetup.com/Boston-Infrastructure-Coders/">Boston Infrastructure Coders</a></li>
          <li>Yieldbot is <a href="https://www.yieldbot.com/careers/">hiring</a>, come build cool stuff!</li>
       </ul>
      </section>

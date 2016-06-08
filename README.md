@@ -1,3 +1,2 @@
-## Extending Monitoring Capabilities With Golang
-## Metrowest Golang Meetup
-
+## How Yieldbot Uses Golang For Monitoring
+## Boston Infrastructure Coders Meetup
